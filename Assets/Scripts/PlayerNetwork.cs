@@ -17,6 +17,16 @@ public class PlayerNetwork : NetworkBehaviour
         if (Input.GetKey(KeyCode.D) == true)
             movementVector.x += 1;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+            PushPotServerRpc();
+
+
         transform.position += movementVector * (movementSpeed * Time.deltaTime);
+    }
+
+    [ServerRpc]
+    public void PushPotServerRpc()
+    {
+
     }
 }
