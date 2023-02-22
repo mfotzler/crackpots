@@ -63,8 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c4fbf1d8bec7e4dad33f9730f31c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pots: {fileID: 2193097734572836784, guid: 6a710d1c7cdd2ad41941db37f533c7c3, type: 3}
-  movementSpeed: 12
+  movementSpeed: 8
+  potPushForce: 100
+  potPushProximity: 0.5
 --- !u!114 &3620682164937854488
 MonoBehaviour:
   m_ObjectHideFlags: 0
