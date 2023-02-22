@@ -39,8 +39,10 @@ public class PlayerNetwork : NetworkBehaviour
             var transforms = pots.GetComponentsInChildren<Transform>();
             foreach (Transform potTransform in transforms)
             {
+                if (potTransform == pots.transform)
+                    continue;
+
                 var distance = Mathf.Abs(potTransform.position.x - playerPosition.x);
-                Debug.Log(distance);
                 if (distance < potPushProximity)
                 {
                     potTransform.GetComponent<Rigidbody>().AddForce(Vector3.back * potPushForce);
