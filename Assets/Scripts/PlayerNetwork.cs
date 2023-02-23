@@ -43,7 +43,6 @@ public class PlayerNetwork : NetworkBehaviour
                     continue;
 
                 var distance = Mathf.Abs(potTransform.position.x - playerPosition.x);
-                Debug.Log(distance);
                 if (distance < potPushProximity)
                 {
                     potTransform.GetComponent<Rigidbody>().AddForce(Vector3.back * potPushForce);
