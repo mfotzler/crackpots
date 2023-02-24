@@ -21,20 +21,18 @@ public class PlayerNetwork : NetworkBehaviour
             movementVector.x += 1;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            PushPotServerRpc();
+            PushPotServerRpc(transform.position.x);
 
 
         transform.position += movementVector * (movementSpeed * Time.deltaTime);
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void PushPotServerRpc(ServerRpcParams serverRpcParams = default)
+    public void PushPotServerRpc(float xPosition, ServerRpcParams serverRpcParams = default)
     {
         var clientId = serverRpcParams.Receive.SenderClientId;
         if (NetworkManager.ConnectedClients.ContainsKey(clientId))
         {
-            var client = NetworkManager.ConnectedClients[clientId];
-            var playerPosition = client.PlayerObject.transform.position;
             var pots = ReferenceManager.Pots;
             var transforms = pots.GetComponentsInChildren<Transform>();
             foreach (Transform potTransform in transforms)
@@ -42,7 +40,7 @@ public class PlayerNetwork : NetworkBehaviour
                 if (potTransform == pots.transform)
                     continue;
 
-                var distance = Mathf.Abs(potTransform.position.x - playerPosition.x);
+                var distance = Mathf.Abs(potTransform.position.x - xPosition);
                 if (distance < potPushProximity)
                 {
                     potTransform.GetComponent<Rigidbody>().AddForce(Vector3.back * potPushForce);
