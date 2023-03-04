@@ -10,6 +10,7 @@ public class PotCrushKiller : MonoBehaviour
         if (collision.gameObject.CompareTag("Pot"))
         {
             Destroy(gameObject);
+            GameStats.WhatAGoal();
         }
     }
 }

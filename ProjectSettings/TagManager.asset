@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pot
   - Ground
+  - Window
   layers:
   - Default
   - TransparentFX
